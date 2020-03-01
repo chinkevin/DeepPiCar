@@ -127,7 +127,7 @@ def show_image(title, frame, show=_SHOW_IMAGE):
 
 def main():
     with DeepPiCar() as car:
-        car.drive(40)
+        car.drive(20)
 
 
 if __name__ == '__main__':
