@@ -3,7 +3,7 @@ import picar
 import cv2
 import datetime
 from hand_coded_lane_follower import HandCodedLaneFollower
-# from objects_on_road_processor import ObjectsOnRoadProcessor
+from objects_on_road_processor import ObjectsOnRoadProcessor
 # from end_to_end_lane_follower import EndToEndLaneFollower
 
 _SHOW_IMAGE = True
