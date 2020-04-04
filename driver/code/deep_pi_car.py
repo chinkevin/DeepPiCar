@@ -3,8 +3,8 @@ import picar
 import cv2
 import datetime
 from hand_coded_lane_follower import HandCodedLaneFollower
-from objects_on_road_processor import ObjectsOnRoadProcessor
-from end_to_end_lane_follower import EndToEndLaneFollower
+# from objects_on_road_processor import ObjectsOnRoadProcessor
+# from end_to_end_lane_follower import EndToEndLaneFollower
 
 _SHOW_IMAGE = True
 
@@ -37,15 +37,16 @@ class DeepPiCar(object):
         logging.debug('Set up back wheels')
         self.back_wheels = picar.back_wheels.Back_Wheels()
         self.back_wheels.speed = 0  # Speed Range is 0 (stop) - 100 (fastest)
+        self.back_wheels.forward()
 
         logging.debug('Set up front wheels')
         self.front_wheels = picar.front_wheels.Front_Wheels()
         self.front_wheels.turning_offset = -25  # calibrate servo to center
         self.front_wheels.turn(90)  # Steering Range is 45 (left) - 90 (center) - 135 (right)
 
-        # self.lane_follower = HandCodedLaneFollower(self)
+        self.lane_follower = HandCodedLaneFollower(self)
         self.traffic_sign_processor = ObjectsOnRoadProcessor(self)
-        self.lane_follower = EndToEndLaneFollower(self)
+        # self.lane_follower = EndToEndLaneFollower(self)
 
         self.fourcc = cv2.VideoWriter_fourcc(*'XVID')
         datestr = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
@@ -97,9 +98,9 @@ class DeepPiCar(object):
             i += 1
             self.video_orig.write(image_lane)
 
-            image_objs = self.process_objects_on_road(image_objs)
-            self.video_objs.write(image_objs)
-            show_image('Detected Objects', image_objs)
+            # image_objs = self.process_objects_on_road(image_objs)
+            # self.video_objs.write(image_objs)
+            # show_image('Detected Objects', image_objs)
 
             image_lane = self.follow_lane(image_lane)
             self.video_lane.write(image_lane)
