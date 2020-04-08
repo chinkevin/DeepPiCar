@@ -11,7 +11,7 @@ _SHOW_IMAGE = True
 
 class DeepPiCar(object):
 
-    __INITIAL_SPEED = 40
+    __INITIAL_SPEED = 30
     __SCREEN_WIDTH = 320
     __SCREEN_HEIGHT = 240
 
